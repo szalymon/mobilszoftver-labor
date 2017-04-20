@@ -21,6 +21,8 @@ public class MobSoftApplication extends Application {
                         uIModule(
                                 new UIModule(this)
                         ).build();
+
+        injector.inject(this);
     }
 }
 
