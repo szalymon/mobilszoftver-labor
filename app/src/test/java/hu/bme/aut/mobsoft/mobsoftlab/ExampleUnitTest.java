@@ -1,4 +1,4 @@
-package mobsoft.aut.bme.hu.mobsoftlab;
+package hu.bme.aut.mobsoft.mobsoftlab;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package mobsoft.aut.bme.hu.mobsoftlab;
+package hu.bme.aut.mobsoft.mobsoftlab;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("mobsoft.aut.bme.hu.mobsoftlab", appContext.getPackageName());
+        assertEquals("hu.bme.aut.mobsoft.mobsoftlab", appContext.getPackageName());
     }
 }
