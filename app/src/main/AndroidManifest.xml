@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hu.bme.aut.mobsoft.mobsoftlab" >
+    package="hu.bme.aut.mobsoft.mobsoftlab">
 
     <application
         android:name=".MobSoftApplication"
@@ -9,14 +9,17 @@
         android:label="Sör recptek"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".ui.main.MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.rating.RatingActivity" />
+        <activity android:name=".ui.recipe.RecipeListActivity" />
+        <activity android:name=".ui.recipe.RecipeDetailActivity"></activity>
     </application>
 
 </manifest>
