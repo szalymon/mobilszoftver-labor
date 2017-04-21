@@ -8,12 +8,17 @@ android:
     - android-25
     - add-on
     - extra
-    - extra-google-googleplayservices
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-19
     - sys-img-armeabi-v7a-android-21
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'intel-android-extra-license.+'
 
+jdk:
+  - oraclejdk8
 
 env:
   global:
