@@ -8,7 +8,6 @@ import java.util.List;
 import hu.bme.aut.mobsoft.mobsoftlab.model.Recipe;
 
 public class SugarOrmRepository implements Repository {
-
     @Override
     public void open(Context context) {
 
@@ -25,12 +24,17 @@ public class SugarOrmRepository implements Repository {
     }
 
     @Override
-    public void saveRecipe(Recipe recipe) {
+    public Recipe getRecipe() {
+        return null;
+    }
+
+    @Override
+    public void addRecipe(Recipe recipe) {
 
     }
 
     @Override
-    public void removeRecipe(Recipe recipe) {
+    public void deleteRecipe(Recipe recipe) {
 
     }
 
