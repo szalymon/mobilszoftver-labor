@@ -4,9 +4,6 @@ import hu.bme.aut.mobsoft.mobsoftlab.ui.Presenter;
 
 import static hu.bme.aut.mobsoft.mobsoftlab.MobSoftApplication.injector;
 
-/**
- * Created by szalymon on 2017. 04. 20..
- */
 
 public class MainPresenter extends Presenter<MainScreen> {
 

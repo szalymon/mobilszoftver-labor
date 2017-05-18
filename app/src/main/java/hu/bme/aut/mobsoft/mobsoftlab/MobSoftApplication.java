@@ -4,9 +4,6 @@ import android.app.Application;
 
 import hu.bme.aut.mobsoft.mobsoftlab.ui.UIModule;
 
-/**
- * Created by szalymon on 2017. 04. 20..
- */
 
 public class MobSoftApplication extends Application {
 

@@ -3,14 +3,13 @@ package hu.bme.aut.mobsoft.mobsoftlab;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.RecipeInteractor;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.UIModule;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.main.MainActivity;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.main.MainPresenter;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.rating.RatingPresenter;
-
-/**
- * Created by szalymon on 2017. 04. 20..
- */
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipe.RecipeDetailPresenter;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipe.RecipeListPresenter;
 
 @Singleton
 @Component(modules = {UIModule.class})
@@ -22,4 +21,10 @@ public interface MobSoftApplicationComponent {
     void inject(MainPresenter mainPresenter);
 
     void inject(RatingPresenter ratingPresenter);
+
+    void inject(RecipeInteractor recipeInteractor);
+
+    void inject(RecipeListPresenter recipeListPresenter);
+
+    void inject(RecipeDetailPresenter recipeDetailPresenter);
 }

@@ -1,20 +1,14 @@
-package hu.bme.aut.mobsoft.mobsoftlab.ui.main;
+package hu.bme.aut.mobsoft.mobsoftlab.ui.recipe;
 
 import hu.bme.aut.mobsoft.mobsoftlab.ui.Presenter;
 
 import static hu.bme.aut.mobsoft.mobsoftlab.MobSoftApplication.injector;
 
-/**
- * Created by szalymon on 2017. 04. 20..
- */
 
-public class MainPresenter extends Presenter<MainScreen> {
-
-    public MainPresenter() {
-    }
+public class RecipeListPresenter extends Presenter<RecipeListScreen> {
 
     @Override
-    public void attachScreen(MainScreen screen) {
+    public void attachScreen(RecipeListScreen screen) {
         super.attachScreen(screen);
         injector.inject(this);
     }

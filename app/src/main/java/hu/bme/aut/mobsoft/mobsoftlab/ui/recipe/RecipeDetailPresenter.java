@@ -4,9 +4,6 @@ import hu.bme.aut.mobsoft.mobsoftlab.ui.Presenter;
 
 import static hu.bme.aut.mobsoft.mobsoftlab.MobSoftApplication.injector;
 
-/**
- * Created by szalymon on 2017. 04. 20..
- */
 
 public class RecipeDetailPresenter extends Presenter<RecipeDetailScreen> {
 
@@ -14,7 +11,7 @@ public class RecipeDetailPresenter extends Presenter<RecipeDetailScreen> {
     }
 
     @Override
-    public void attachScreen(MainScreen screen) {
+    public void attachScreen(RecipeDetailScreen screen) {
         super.attachScreen(screen);
         injector.inject(this);
     }

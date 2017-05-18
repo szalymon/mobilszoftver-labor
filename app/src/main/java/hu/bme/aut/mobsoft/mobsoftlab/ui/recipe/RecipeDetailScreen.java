@@ -1,8 +1,5 @@
-package hu.bme.aut.mobsoft.mobsoftlab.ui.main;
+package hu.bme.aut.mobsoft.mobsoftlab.ui.recipe;
 
-/**
- * Created by szalymon on 2017. 04. 20..
- */
 
-public interface MainScreen {
+public interface RecipeDetailScreen {
 }
