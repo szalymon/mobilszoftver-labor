@@ -32,7 +32,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.rating.RatingActivity" />
-        <activity android:name=".ui.recipe.RecipeListActivity" />
         <activity android:name=".ui.recipe.RecipeDetailActivity"></activity>
     </application>
 

@@ -1,0 +1,59 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hu.bme.aut.mobsoft.mobsoftlab.ui.recipedetail.RecipeDetailFragment">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+        <TextView
+            android:id="@+id/recipe_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilsner"
+            android:textSize="30sp"
+            />
+        <TextView
+            android:id="@+id/recipe_detail_description"
+            android:padding="10sp"
+            android:minHeight="100sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="Description"/>
+
+        <TextView
+            android:id="@+id/recipe_detail_bitterhop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Keserű komló:"/>
+        <TextView
+            android:id="@+id/recipe_detail_aromahop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Aromakomló:"/>
+        <TextView
+            android:id="@+id/recipe_detail_water"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Víz: "/>
+        <TextView
+            android:id="@+id/recipe_detail_malt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"
+            android:textSize="20sp"
+            android:text="Maláta: "/>
+    </LinearLayout>
+
+</FrameLayout>

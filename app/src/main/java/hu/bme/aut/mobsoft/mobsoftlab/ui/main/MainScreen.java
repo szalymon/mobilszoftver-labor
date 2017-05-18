@@ -14,6 +14,5 @@ public interface MainScreen {
 
     void showRecipeDetail(Long id);
 
-    void showList(List<Recipe> recipeList);
-
+    void showRecipeList();
 }

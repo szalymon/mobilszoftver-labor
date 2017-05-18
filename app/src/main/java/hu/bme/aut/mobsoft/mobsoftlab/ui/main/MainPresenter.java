@@ -48,7 +48,7 @@ public class MainPresenter extends Presenter<MainScreen> {
     public void onEventMainThread(GetRecipesEvent event) {
         if(screen != null) {
             screen.showMessage("GetRecipesEvent: " +  event.getRecipes().size());
-            screen.showList(event.getRecipes());
+//            screen.showList(event.getRecipes());
         }
     }
 

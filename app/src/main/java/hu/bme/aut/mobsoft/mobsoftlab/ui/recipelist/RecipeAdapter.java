@@ -1,4 +1,4 @@
-package hu.bme.aut.mobsoft.mobsoftlab.ui.recipe;
+package hu.bme.aut.mobsoft.mobsoftlab.ui.recipelist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
