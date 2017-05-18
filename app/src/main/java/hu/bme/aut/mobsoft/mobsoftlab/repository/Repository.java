@@ -14,11 +14,11 @@ public interface Repository {
 
     List<Recipe> getRecipes();
 
-    Recipe getRecipe();
+    Recipe getDetailedRecipe(Long id);
 
-    void addRecipe(Recipe recipe);
+    void removeRecipe(Recipe recipe);
 
-    void deleteRecipe(Recipe recipe);
+    void saveRecipe(Recipe recipe);
 
     boolean isInDB(Recipe recipe);
 }

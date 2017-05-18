@@ -1,21 +1,35 @@
 package hu.bme.aut.mobsoft.mobsoftlab.ui.main;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import hu.bme.aut.mobsoft.mobsoftlab.MobSoftApplication;
 import hu.bme.aut.mobsoft.mobsoftlab.R;
+import hu.bme.aut.mobsoft.mobsoftlab.model.Recipe;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipe.RecipeAdapter;
 
 public class MainActivity extends AppCompatActivity implements MainScreen {
 
-    private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+    private ListView recipeListView;
+    private Button refreshBtn;
 
     @Inject
     MainPresenter mainPresenter;
@@ -24,13 +38,23 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MobSoftApplication.injector.inject(this);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+//        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        MobSoftApplication.injector.inject(this);
+        recipeListView = (ListView)findViewById(R.id.recipe_list_view);
+
+        refreshBtn = (Button) findViewById(R.id.refresh);
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v("RAKASSZAR", "Az android egy nagy rakás szar");
+                mainPresenter.getRecipes();
+            }
+        });
     }
 
     @Override
@@ -45,9 +69,26 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
         mainPresenter.detachScreen();
     }
 
+    @Override
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showRecipeDetail(Long id) {
+
+    }
+
+    @Override
+    public void showList(List<Recipe> recipeList) {
+        RecipeAdapter adapter = new RecipeAdapter(this, recipeList);
+        recipeListView.setAdapter(adapter);
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         }
     }
+
 }
