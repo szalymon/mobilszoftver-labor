@@ -62,7 +62,7 @@ public interface RecipeApi {
    */
   
   @GET("recipes")
-  Call<List<RecipeInfo>> getRecipes();
+  Call<List<Recipe>> getRecipes();
     
 
   

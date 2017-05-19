@@ -12,12 +12,16 @@ import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.GetDetailedRecipeE
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.GetRecipesEvent;
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.SaveRecipeEvent;
 import hu.bme.aut.mobsoft.mobsoftlab.model.Recipe;
+import hu.bme.aut.mobsoft.mobsoftlab.network.recipe.RecipeApi;
 import hu.bme.aut.mobsoft.mobsoftlab.repository.Repository;
 
 public class RecipeInteractor {
 
     @Inject
     Repository repository;
+
+    @Inject
+    RecipeApi recipeApi;
 
     @Inject
     EventBus bus;
@@ -61,6 +65,24 @@ public class RecipeInteractor {
             event.setThrowable(e);
             bus.post(event);
         }
+//        final GetRecipesEvent event = new GetRecipesEvent();
+//        try {
+//            recipeApi.getRecipes().enqueue(
+//                    new Callback<List<Recipe>>() {
+//                        @Override
+//                        public void onResponse(Response<List<Recipe>> response) {
+//                            event.setRecipes(response.body());
+//                            bus.post(event);
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Throwable t) {
+//                            List<Recipe> recipes = repository.getRecipes();
+//                            event.setRecipes(recipes);
+//                            bus.post(event);
+//                        }
+//                    }
+//            );
     }
 
     public void getRecipeDetail(long id) {
