@@ -14,12 +14,14 @@ public class MemoryRepository implements Repository {
 
     public static List<Recipe> recipes;
 
+    static Long idseq = 0L;
+
     @Override
     public void open(Context context) {
         recipes = new ArrayList<>();
-
         {
             Recipe recipe = new Recipe("Stout");
+            recipe.setId(idseq++);
             recipe.setDescription("It's a wounderful description");
 
             recipe.setFruitiness(2);
@@ -35,6 +37,7 @@ public class MemoryRepository implements Repository {
 
         {
             Recipe recipe = new Recipe("IPA");
+            recipe.setId(idseq++);
             recipe.setDescription("It's a wounderful description");
 
             recipe.setFruitiness(3);
@@ -50,6 +53,7 @@ public class MemoryRepository implements Repository {
 
         {
             Recipe recipe = new Recipe("Pilsner");
+            recipe.setId(idseq++);
             recipe.setDescription("It's a wounderful description");
 
             recipe.setFruitiness(3);
@@ -65,6 +69,7 @@ public class MemoryRepository implements Repository {
 
         {
             Recipe recipe = new Recipe("Some kind of Lager");
+            recipe.setId(idseq++);
             recipe.setDescription("It's a wounderful description");
 
             recipe.setFruitiness(3);
@@ -90,7 +95,7 @@ public class MemoryRepository implements Repository {
 
     @Override
     public Recipe getDetailedRecipe(Long id) {
-        return null;
+        return recipes.get(id.intValue());
     }
 
     @Override
@@ -100,6 +105,7 @@ public class MemoryRepository implements Repository {
 
     @Override
     public void saveRecipe(Recipe recipe) {
+        recipe.setId(idseq++);
         recipes.add(recipe);
     }
 

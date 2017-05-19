@@ -28,7 +28,7 @@ public class SugarOrmRepository implements Repository {
 
     @Override
     public Recipe getDetailedRecipe(Long id) {
-        return null;
+        return SugarRecord.findById(Recipe.class, id);
     }
 
     @Override

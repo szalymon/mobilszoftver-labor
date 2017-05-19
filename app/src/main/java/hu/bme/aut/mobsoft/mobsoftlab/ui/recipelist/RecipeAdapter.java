@@ -31,6 +31,9 @@ public class RecipeAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if(mDataSource == null) {
+            mDataSource = new ArrayList<>();
+        }
         return mDataSource.size();
     }
 
@@ -55,6 +58,7 @@ public class RecipeAdapter extends BaseAdapter {
 
         title.setText(recipe.getName());
         description.setText(recipe.getDescription());
+
         return rowView;
     }
 }

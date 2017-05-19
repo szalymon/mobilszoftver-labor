@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import de.greenrobot.event.EventBus;
 import hu.bme.aut.mobsoft.mobsoftlab.MobSoftApplication;
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.DeleteRecipeEvent;
+import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.GetDetailedRecipeEvent;
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.GetRecipesEvent;
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.SaveRecipeEvent;
 import hu.bme.aut.mobsoft.mobsoftlab.model.Recipe;
@@ -55,6 +56,18 @@ public class RecipeInteractor {
         try {
             List<Recipe> recipes = repository.getRecipes();
             event.setRecipes(recipes);
+            bus.post(event);
+        } catch (Exception e) {
+            event.setThrowable(e);
+            bus.post(event);
+        }
+    }
+
+    public void getRecipeDetail(long id) {
+        GetDetailedRecipeEvent event = new GetDetailedRecipeEvent();
+        try {
+            Recipe recipe = repository.getDetailedRecipe(id);
+            event.setRecipe(recipe);
             bus.post(event);
         } catch (Exception e) {
             event.setThrowable(e);

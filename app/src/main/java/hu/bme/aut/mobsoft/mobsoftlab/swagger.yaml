@@ -1,0 +1,179 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is a sample server Petstore server.  You can find out more about    
+    Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net,
+    #swagger](http://swagger.io/irc/).      For this sample, you can use the api
+    key `special-key` to test the authorization     filters.
+  version: 0.0.1
+  title: Beer recipes
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: urbsimon@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: urbanovics.hu
+basePath: /v2
+tags:
+  - name: recipe
+    description: Everything about your Recipes
+    externalDocs:
+      description: Find out more
+      url: 'http://swagger.io'
+  - name: rating
+    description: Operations about user
+    externalDocs:
+      description: Find out more about our store
+      url: 'http://swagger.io'
+schemes:
+  - http
+paths:
+  /recipe:
+    put:
+      tags:
+        - recipe
+      summary: Add a new recipe
+      description: ''
+      operationId: addRecipe
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Recipe object that needs to be saved
+          required: true
+          schema:
+            $ref: '#/definitions/Recipe'
+      responses:
+        '405':
+          description: Invalid input
+  /recipes:
+    get:
+      tags:
+        - recipe
+      summary: List all recipes
+      description: ''
+      operationId: getRecipes
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RecipeInfo'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Recipe not found
+        '405':
+          description: Validation exception
+  '/recipe/{recipeId}':
+    get:
+      tags:
+        - recipe
+      summary: Get detailed list by id
+      description: Get recipe
+      operationId: getRecipe
+      produces:
+        - application/json
+      parameters:
+        - name: recipeId
+          in: path
+          description: Recipe id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/Recipe'
+          description: Detailed recipe
+        '400':
+          description: Invalid status value
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+    delete:
+      tags:
+        - recipe
+      summary: Deletes a recipe
+      description: ''
+      operationId: deleteRecipe
+      produces:
+        - application/json
+      parameters:
+        - name: recipeId
+          in: path
+          description: Recipe id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+      security:
+        - petstore_auth:
+            - 'write:pets'
+            - 'read:pets'
+securityDefinitions:
+  petstore_auth:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/oauth/dialog'
+    flow: implicit
+    scopes:
+      'write:pets': modify pets in your account
+      'read:pets': read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  Recipe:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      description:
+        type: string
+        description: Recipe description
+      bitter-hop:
+        type: integer
+      flavour-hop:
+        type: integer
+      water:
+        type: integer
+      malt:
+        type: integer
+      bitterness:
+        type: integer
+      sweetness:
+        type: integer
+      fruitiness:
+        type: integer
+  RecipeInfo: null
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    description:
+      type: string
+      description: Recipe description
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'

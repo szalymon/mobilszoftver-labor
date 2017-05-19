@@ -1,0 +1,85 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hu.bme.aut.mobsoft.mobsoftlab.ui.newrecipe.NewRecipeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow>
+            <TextView
+                android:text="Recepet neve "
+                />
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Leírás"/>
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Keserű komló (g)"/>
+            <EditText
+                android:id="@+id/bitterhop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Aroma komló (g)"/>
+            <EditText
+                android:id="@+id/flavour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Víz(l)"/>
+            <EditText
+                android:id="@+id/water"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Maláta(g)"/>
+            <EditText
+                android:id="@+id/malt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+            <Button
+                android:id="@+id/save"
+                android:text="Mentés"
+                />
+        </TableRow>
+
+    </TableLayout>
+</FrameLayout>

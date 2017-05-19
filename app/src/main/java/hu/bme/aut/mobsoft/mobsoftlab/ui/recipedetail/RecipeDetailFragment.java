@@ -4,11 +4,19 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import javax.inject.Inject;
+
+import hu.bme.aut.mobsoft.mobsoftlab.MobSoftApplication;
 import hu.bme.aut.mobsoft.mobsoftlab.R;
+import hu.bme.aut.mobsoft.mobsoftlab.model.Recipe;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,17 +26,18 @@ import hu.bme.aut.mobsoft.mobsoftlab.R;
  * Use the {@link RecipeDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecipeDetailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class RecipeDetailFragment extends Fragment implements RecipeDetailScreen {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public static final String RECIPE_ID = "recipe_id";
+
+    private Long recipeId;
 
     private OnFragmentInteractionListener mListener;
+
+    private Recipe showedRecipe;
+
+    @Inject
+    RecipeDetailPresenter recipeDetailPresenter;
 
     public RecipeDetailFragment() {
         // Required empty public constructor
@@ -46,8 +55,6 @@ public class RecipeDetailFragment extends Fragment {
     public static RecipeDetailFragment newInstance(String param1, String param2) {
         RecipeDetailFragment fragment = new RecipeDetailFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,9 +62,10 @@ public class RecipeDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MobSoftApplication.injector.inject(this);
+
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            recipeId = getArguments().getLong("recipe_id");
         }
     }
 
@@ -65,7 +73,29 @@ public class RecipeDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipe_detail, container, false);
+        View view =inflater.inflate(R.layout.fragment_recipe_detail, container, false);
+
+        final Button backBtn = (Button)view.findViewById(R.id.back_button);
+        backBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        back();
+                    }
+                }
+        );
+
+        final Button deleteBtn = (Button)view.findViewById(R.id.detail_delete);
+        deleteBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        recipeDetailPresenter.deleteRecipe(showedRecipe);
+                    }
+                }
+        );
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -87,23 +117,56 @@ public class RecipeDetailFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        recipeDetailPresenter.attachScreen(this);
+        recipeDetailPresenter.getRecipeDetails(recipeId);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        recipeDetailPresenter.detachScreen();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+    @Override
+    public void showRecipeDetails(Recipe recipe) {
+        showedRecipe = recipe;
+        View view = getView();
+        TextView title = (TextView)view.findViewById(R.id.recipe_detail_title);
+        TextView description = (TextView)view.findViewById(R.id.recipe_detail_description);
+        TextView malt = (TextView)view.findViewById(R.id.recipe_detail_malt);
+        TextView water = (TextView)view.findViewById(R.id.recipe_detail_water);
+        TextView aromahop = (TextView)view.findViewById(R.id.recipe_detail_aromahop);
+        TextView bitterhop = (TextView)view.findViewById(R.id.recipe_detail_bitterhop);
+
+        title.setText(recipe.getName());
+        description.setText(recipe.getDescription());
+        water.setText("Víz: " + recipe.getWater());
+        malt.setText("Maláta: " + recipe.getMalt());
+        aromahop.setText("Aroma komló: " + recipe.getFlavourHop());
+        bitterhop.setText("Keserű komló: " + recipe.getBitterHop());
+
+        Log.v("ShowDetails", ""+recipe.getName());
+    }
+
+    @Override
+    public void back() {
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        fragmentManager.beginTransaction().remove(this).commit();
+    }
+
+
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

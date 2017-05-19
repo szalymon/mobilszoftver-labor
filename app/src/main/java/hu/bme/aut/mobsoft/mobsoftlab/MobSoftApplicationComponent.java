@@ -9,6 +9,11 @@ import hu.bme.aut.mobsoft.mobsoftlab.repository.RepositoryModule;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.UIModule;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.main.MainActivity;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.main.MainPresenter;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.newrecipe.NewRecipeFragment;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.newrecipe.NewRecipePresenter;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipedetail.RecipeDetailFragment;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipedetail.RecipeDetailPresenter;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipelist.RecipeItemFragment;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.recipelist.RecipeListPresenter;
 
 @Singleton
@@ -24,4 +29,14 @@ public interface MobSoftApplicationComponent {
     void inject(RecipeInteractor recipeInteractor);
 
     void inject(RecipeListPresenter recipeListPresenter);
+
+    void inject(RecipeDetailFragment recipeDetailFragment);
+
+    void inject(RecipeDetailPresenter recipeDetailPresenter);
+
+    void inject(NewRecipePresenter newRecipePresenter);
+
+    void inject(RecipeItemFragment recipeItemFragment);
+
+    void inject(NewRecipeFragment newRecipeFragment);
 }

@@ -11,6 +11,10 @@ import dagger.Module;
 import dagger.Provides;
 import de.greenrobot.event.EventBus;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.main.MainPresenter;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.newrecipe.NewRecipePresenter;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipedetail.RecipeDetailPresenter;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipelist.RecipeListPresenter;
+import hu.bme.aut.mobsoft.mobsoftlab.ui.recipelist.RecipeListScreen;
 
 /**
  * Created by szalymon on 2017. 04. 20..
@@ -33,6 +37,24 @@ public class UIModule {
     @Singleton
     public MainPresenter provideMainPresenter() {
         return new MainPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public NewRecipePresenter provideNewRecipePresenter() {
+        return new NewRecipePresenter();
+    }
+
+    @Provides
+    @Singleton
+    public RecipeListPresenter provideRecipeListPresenter() {
+        return new RecipeListPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public RecipeDetailPresenter provideRecipeDetailPresenter() {
+        return new RecipeDetailPresenter();
     }
 
     @Provides

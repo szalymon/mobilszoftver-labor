@@ -12,7 +12,5 @@ public interface MainScreen {
 
     void showMessage(String message);
 
-    void showRecipeDetail(Long id);
-
-    void showRecipeList();
+    void showRecipeList(List<Recipe> recipies);
 }

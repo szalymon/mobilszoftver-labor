@@ -21,6 +21,12 @@
         android:layout_height="match_parent"
         android:text="desc"
         android:layout_below="@+id/recipe_list_item_title" />
+    <!--<Button-->
+        <!--android:id="@+id/detele_recipe"-->
+        <!--android:text="X"-->
+        <!--android:layout_marginLeft="250sp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
 
 
 </RelativeLayout>

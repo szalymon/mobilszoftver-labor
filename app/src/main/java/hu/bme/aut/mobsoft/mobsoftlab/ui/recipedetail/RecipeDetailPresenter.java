@@ -1,6 +1,4 @@
-package hu.bme.aut.mobsoft.mobsoftlab.ui.main;
-
-import android.util.Log;
+package hu.bme.aut.mobsoft.mobsoftlab.ui.recipedetail;
 
 import java.util.concurrent.Executor;
 
@@ -9,14 +7,13 @@ import javax.inject.Inject;
 import de.greenrobot.event.EventBus;
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.RecipeInteractor;
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.GetDetailedRecipeEvent;
-import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.events.GetRecipesEvent;
+import hu.bme.aut.mobsoft.mobsoftlab.model.Recipe;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.Presenter;
 
 import static hu.bme.aut.mobsoft.mobsoftlab.MobSoftApplication.injector;
 
 
-public class MainPresenter extends Presenter<MainScreen> {
-
+public class RecipeDetailPresenter extends Presenter<RecipeDetailScreen> {
     @Inject
     RecipeInteractor recipeInteractor;
 
@@ -27,7 +24,7 @@ public class MainPresenter extends Presenter<MainScreen> {
     EventBus bus;
 
     @Override
-    public void attachScreen(MainScreen screen) {
+    public void attachScreen(RecipeDetailScreen screen) {
         super.attachScreen(screen);
         injector.inject(this);
         bus.register(this);
@@ -39,25 +36,19 @@ public class MainPresenter extends Presenter<MainScreen> {
         bus.unregister(this);
     }
 
-    public void getRecipes() {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                recipeInteractor.getRecipes();
-            }
-        });
+    public void getRecipeDetails(Long id) {
+        recipeInteractor.getRecipeDetail(id);
     }
 
-    public void onEventMainThread(GetRecipesEvent event) {
+    public void onEventMainThread(GetDetailedRecipeEvent event) {
         if(screen != null) {
-            screen.showMessage("GetRecipesEvent: " +  event.getRecipes().size());
+            screen.showRecipeDetails(event.getRecipe());
         }
     }
 
-//    public void onEventMainThread(GetDetailedRecipeEvent event) {
-//        if(screen != null) {
-//            screen.showRecipeDetail(event.getRecipe());
-//        }
-//    }
+    void deleteRecipe(Recipe recipe) {
+        recipeInteractor.deleteRecipe(recipe);
+        screen.back();
+    }
 
 }
