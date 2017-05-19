@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.InteractorModule;
 import hu.bme.aut.mobsoft.mobsoftlab.interactor.recipe.RecipeInteractor;
+import hu.bme.aut.mobsoft.mobsoftlab.network.NetworkModule;
 import hu.bme.aut.mobsoft.mobsoftlab.repository.RepositoryModule;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.UIModule;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.main.MainActivity;
@@ -17,7 +18,7 @@ import hu.bme.aut.mobsoft.mobsoftlab.ui.recipelist.RecipeItemFragment;
 import hu.bme.aut.mobsoft.mobsoftlab.ui.recipelist.RecipeListPresenter;
 
 @Singleton
-@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class})
+@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class, NetworkModule.class})
 public interface MobSoftApplicationComponent {
 
     void inject(MainActivity mainActivity);

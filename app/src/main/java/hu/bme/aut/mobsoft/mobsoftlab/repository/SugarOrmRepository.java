@@ -43,6 +43,6 @@ public class SugarOrmRepository implements Repository {
 
     @Override
     public boolean isInDB(Recipe recipe) {
-        return false;
+        return SugarRecord.findById(Recipe.class, recipe.getId()) != null;
     }
 }
